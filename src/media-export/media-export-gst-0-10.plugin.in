@@ -1,0 +1,7 @@
+[Plugin]
+Version = @VERSION@
+Module = media-export-gst-0-10
+Name = MediaExportGst-0.10
+License = LGPL
+Description = SQLite-based locate file sharing
+Copyright = Copyright © Intel Corporation

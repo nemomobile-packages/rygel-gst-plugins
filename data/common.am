@@ -1,0 +1,2 @@
+#shareddir = $(datadir)/rygel-media-export-gst-0-10
+#presetdir = $(shareddir)/presets

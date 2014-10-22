@@ -1,0 +1,11 @@
+# List of source files containing translatable strings.
+# Please keep this file sorted alphabetically.
+[encoding: UTF-8]
+src/media-export/rygel-media-export-database-cursor.c
+src/media-export/rygel-media-export-database.c
+src/media-export/rygel-media-export-harvester.c
+src/media-export/rygel-media-export-harvesting-task.c
+src/media-export/rygel-media-export-media-cache.c
+src/media-export/rygel-media-export-metadata-extractor.c
+src/media-export/rygel-media-export-recursive-file-monitor.c
+src/media-export/rygel-media-export-root-container.c
