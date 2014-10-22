@@ -35,15 +35,6 @@ mechanism. Interoperability with other devices in the market is achieved by
 conformance to very strict requirements of DLNA and on the fly conversion of
 media to format that client devices are capable of handling.
 
-%package devel
-Summary: Development package for %{name}
-Group: Development/Libraries
-Requires: %{name} = %{version}-%{release}
-Requires: pkgconfig
-
-%description devel
-Files for development with %{name}.
-
 %prep
 %setup -q -n %{name}-%{version}/rygel-gst-0-10-plugins
 
@@ -58,7 +49,7 @@ make install DESTDIR=%{buildroot} INSTALL='install -p'
 #Remove libtool archives.
 find %{buildroot} -name '*.la' -exec rm -f {} ';'
 
-%find_lang %{name}
+%find_lang rygel-gst-0-10-plugins
 
 %post
 /sbin/ldconfig
@@ -66,8 +57,5 @@ find %{buildroot} -name '*.la' -exec rm -f {} ';'
 %postun
 /sbin/ldconfig
 
-%files -f %{name}.lang
+%files -f rygel-gst-0-10-plugins.lang
 %{_libdir}/rygel-2.4/plugins/*
-
-%files devel
-%{_datadir}/rygel-2.4/*
