@@ -96,7 +96,7 @@ rygel_media_export_item_factory_create_simple (RygelMediaContainer *parent,
                                    g_file_info_get_attribute_uint64 (info, G_FILE_ATTRIBUTE_TIME_MODIFIED));
 
   uri = g_file_get_uri (file);
-  rygel_media_item_add_uri (item, uri);
+  rygel_media_object_add_uri (RYGEL_MEDIA_OBJECT (item), uri);
   g_free (uri);
 
   return item;
@@ -355,17 +355,17 @@ rygel_media_export_item_factory_fill_music_item (RygelMediaExportMusicItem *item
 
   artist = NULL;
   gst_tag_list_get_string (tags, GST_TAG_ARTIST, &artist);
-  rygel_music_item_set_artist (RYGEL_MUSIC_ITEM (item), artist);
+  rygel_media_object_set_artist (RYGEL_MEDIA_OBJECT (item), artist);
   g_free (artist);
 
   album = NULL;
   gst_tag_list_get_string (tags, GST_TAG_ALBUM, &album);
-  rygel_music_item_set_album (RYGEL_MUSIC_ITEM (item), album);
+  rygel_audio_item_set_album (RYGEL_AUDIO_ITEM (item), album);
   g_free (album);
 
   genre = NULL;
   gst_tag_list_get_string (tags, GST_TAG_GENRE, &genre);
-  rygel_music_item_set_genre (RYGEL_MUSIC_ITEM (item), genre);
+  rygel_media_object_set_genre (RYGEL_MEDIA_OBJECT (item), genre);
   g_free (genre);
 
   volume_number = 0U;
@@ -458,7 +458,7 @@ rygel_media_export_item_factory_fill_media_item (RygelMediaItem       *item,
       gchar *datestr = g_new0 (gchar, datestr_length);
 
       g_date_strftime (datestr, datestr_length, "%F", date);
-      rygel_media_item_set_date (item, datestr);
+      rygel_media_object_set_date (media_object, datestr);
       g_free (datestr);
     }
   }
@@ -473,7 +473,7 @@ rygel_media_export_item_factory_fill_media_item (RygelMediaItem       *item,
     tv.tv_sec = (glong) mtime;
     tv.tv_usec = (glong) 0;
     datestr = g_time_val_to_iso8601 (&tv);
-    rygel_media_item_set_date (item, datestr);
+    rygel_media_object_set_date (media_object, datestr);
     g_free (datestr);
   } else {
     g_date_free (date);
@@ -502,6 +502,6 @@ rygel_media_export_item_factory_fill_media_item (RygelMediaItem       *item,
   }
 
   uri = g_file_get_uri (file);
-  rygel_media_item_add_uri (item, uri);
+  rygel_media_object_add_uri (media_object, uri);
   g_free (uri);
 }

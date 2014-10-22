@@ -1429,7 +1429,7 @@ rygel_media_export_media_cache_save_metadata (RygelMediaExportMediaCache  *self,
   rygel_media_export_database_null (&(values[6]));
 
   g_value_init (&(values[7]), G_TYPE_STRING);
-  g_value_set_string (&(values[7]), rygel_media_item_get_date (item));
+  g_value_set_string (&(values[7]), rygel_media_object_get_date (object));
 
   g_value_init (&(values[8]), G_TYPE_INT);
   g_value_set_int (&(values[8]), -1);
@@ -1476,15 +1476,15 @@ rygel_media_export_media_cache_save_metadata (RygelMediaExportMediaCache  *self,
 
       g_value_unset (&(values[5]));
       g_value_init (&(values[5]), G_TYPE_STRING);
-      g_value_set_string (&(values[5]), rygel_music_item_get_artist (music_item));
+      g_value_set_string (&(values[5]), rygel_media_object_get_artist (object));
 
       g_value_unset (&(values[6]));
       g_value_init (&(values[6]), G_TYPE_STRING);
-      g_value_set_string (&(values[6]), rygel_music_item_get_album (music_item));
+      g_value_set_string (&(values[6]), rygel_audio_item_get_album (audio_item));
 
       g_value_unset (&(values[17]));
       g_value_init (&(values[17]), G_TYPE_STRING);
-      g_value_set_string (&(values[17]), rygel_music_item_get_genre (music_item));
+      g_value_set_string (&(values[17]), rygel_media_object_get_genre (object));
 
       g_value_set_int (&(values[12]), rygel_music_item_get_track_number (music_item));
       if (RYGEL_MEDIA_EXPORT_IS_MUSIC_ITEM (item)) {
@@ -1749,7 +1749,7 @@ rygel_media_export_media_cache_get_object_from_statement (RygelMediaExportMediaC
     object = RYGEL_MEDIA_OBJECT (item);
     rygel_media_export_media_cache_fill_item (self, statement, item);
     if (uri) {
-      rygel_media_item_add_uri (item, uri);
+      rygel_media_object_add_uri (object, uri);
     }
     break;
   }
@@ -1782,7 +1782,7 @@ rygel_media_export_media_cache_fill_item (RygelMediaExportMediaCache *self,
   g_return_if_fail (statement != NULL);
   g_return_if_fail (RYGEL_IS_MEDIA_ITEM (item));
 
-  rygel_media_item_set_date (item,
+  rygel_media_object_set_date (RYGEL_MEDIA_OBJECT (item),
                              (const gchar *) sqlite3_column_text (statement, (gint) RYGEL_MEDIA_EXPORT_DETAIL_COLUMN_DATE));
   rygel_media_item_set_mime_type (item,
                                   (const gchar *) sqlite3_column_text (statement, (gint) RYGEL_MEDIA_EXPORT_DETAIL_COLUMN_MIME_TYPE));
@@ -1804,9 +1804,9 @@ rygel_media_export_media_cache_fill_item (RygelMediaExportMediaCache *self,
     if (RYGEL_IS_MUSIC_ITEM (item)) {
       RygelMusicItem *music_item = RYGEL_MUSIC_ITEM (item);
 
-      rygel_music_item_set_artist (music_item, (const gchar *) sqlite3_column_text (statement, (gint) RYGEL_MEDIA_EXPORT_DETAIL_COLUMN_AUTHOR));
-      rygel_music_item_set_album (music_item, (const gchar *) sqlite3_column_text (statement, (gint) RYGEL_MEDIA_EXPORT_DETAIL_COLUMN_ALBUM));
-      rygel_music_item_set_genre (music_item, (const gchar *) sqlite3_column_text (statement, (gint) RYGEL_MEDIA_EXPORT_DETAIL_COLUMN_GENRE));
+      rygel_media_object_set_artist (RYGEL_MEDIA_OBJECT (item), (const gchar *) sqlite3_column_text (statement, (gint) RYGEL_MEDIA_EXPORT_DETAIL_COLUMN_AUTHOR));
+      rygel_audio_item_set_album (audio_item, (const gchar *) sqlite3_column_text (statement, (gint) RYGEL_MEDIA_EXPORT_DETAIL_COLUMN_ALBUM));
+      rygel_media_object_set_genre (RYGEL_MEDIA_OBJECT (item), (const gchar *) sqlite3_column_text (statement, (gint) RYGEL_MEDIA_EXPORT_DETAIL_COLUMN_GENRE));
       rygel_music_item_set_track_number (music_item, sqlite3_column_int (statement, (gint) RYGEL_MEDIA_EXPORT_DETAIL_COLUMN_TRACK));
       rygel_music_item_lookup_album_art (music_item);
     }
