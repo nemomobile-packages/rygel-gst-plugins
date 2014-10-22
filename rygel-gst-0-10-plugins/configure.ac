@@ -45,7 +45,7 @@ LIBSQLITE3_REQUIRED=3.5
 
 RYGEL_BASE_MODULES="gupnp-1.0 >= $GUPNP_REQUIRED gee-0.8 >= $GEE_REQUIRED"
 RYGEL_COMMON_MODULES="$RYGEL_BASE_MODULES gupnp-av-1.0 >= $GUPNP_AV_REQUIRED"
-PKG_CHECK_MODULES([DEPS], [$RYGEL_COMMON_MODULES rygel-server-2.2 >= $LIBRYGEL_SERVER_REQUIRED gio-2.0 >= $GIO_REQUIRED gstreamer-0.10 >= $GSTREAMER_REQUIRED gstreamer-pbutils-0.10 >= $GSTPBU_REQUIRED gupnp-dlna-2.0 >= $GUPNP_DLNA_REQUIRED gupnp-dlna-gst-legacy-2.0 >= $GUPNP_DLNA_REQUIRED gstreamer-tag-0.10 >= $GSTREAMER_TAG_REQUIRED gstreamer-app-0.10 >= $GSTREAMER_TAG_REQUIRED sqlite3 >= $LIBSQLITE3_REQUIRED uuid >= $UUID_REQUIRED])
+PKG_CHECK_MODULES([DEPS], [$RYGEL_COMMON_MODULES rygel-server-2.4 >= $LIBRYGEL_SERVER_REQUIRED gio-2.0 >= $GIO_REQUIRED gstreamer-0.10 >= $GSTREAMER_REQUIRED gstreamer-pbutils-0.10 >= $GSTPBU_REQUIRED gupnp-dlna-2.0 >= $GUPNP_DLNA_REQUIRED gupnp-dlna-gst-legacy-2.0 >= $GUPNP_DLNA_REQUIRED gstreamer-tag-0.10 >= $GSTREAMER_TAG_REQUIRED gstreamer-app-0.10 >= $GSTREAMER_TAG_REQUIRED sqlite3 >= $LIBSQLITE3_REQUIRED uuid >= $UUID_REQUIRED])
 
 AC_CHECK_HEADER([unistr.h],
                 AC_CHECK_LIB([unistring],
@@ -83,10 +83,10 @@ AM_SILENT_RULES([yes])
 
 PKG_PROG_PKG_CONFIG
 
-RYGEL_PLUGIN_LINKER_FLAGS="`$PKG_CONFIG --variable=plugin_ldflags rygel-core-2.2`"
+RYGEL_PLUGIN_LINKER_FLAGS="`$PKG_CONFIG --variable=plugin_ldflags rygel-core-2.4`"
 AC_SUBST(RYGEL_PLUGIN_LINKER_FLAGS)
 
-RYGEL_VERSION="`$PKG_CONFIG --modversion rygel-core-2.2`"
+RYGEL_VERSION="`$PKG_CONFIG --modversion rygel-core-2.4`"
 AC_SUBST(RYGEL_VERSION)
 
 if test "x$RYGEL_PLUGIN_LINKER_FLAGS" = 'x'
@@ -94,7 +94,7 @@ then
 	AC_MSG_ERROR([Could not get Rygel plugin linker flags])
 fi
 
-RYGEL_PLUGIN_DIR="`$PKG_CONFIG --variable=plugindir rygel-core-2.2`"
+RYGEL_PLUGIN_DIR="`$PKG_CONFIG --variable=plugindir rygel-core-2.4`"
 AC_SUBST(RYGEL_PLUGIN_DIR)
 
 if test "x$RYGEL_PLUGIN_DIR" = 'x'
