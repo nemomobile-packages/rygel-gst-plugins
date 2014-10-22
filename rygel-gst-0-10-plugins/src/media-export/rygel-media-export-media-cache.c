@@ -1574,10 +1574,10 @@ rygel_media_export_media_cache_create_object (RygelMediaExportMediaCache  *self,
   g_value_init (&(values[4]), G_TYPE_UINT64);
   g_value_set_uint64 (&(values[4]), rygel_media_object_get_modified (object));
 
-  if (gee_collection_get_is_empty (GEE_COLLECTION (object->uris))) {
+  if (gee_collection_get_is_empty (GEE_COLLECTION (rygel_media_object_get_uris (object)))) {
     uri = NULL;
   } else {
-    uri = (gchar *) gee_list_first (GEE_LIST (object->uris));
+    uri = (gchar *) gee_list_first (GEE_LIST (rygel_media_object_get_uris (object)));
   }
   g_value_init (&(values[5]), G_TYPE_STRING);
   g_value_take_string (&(values[5]), uri);
@@ -1731,7 +1731,7 @@ rygel_media_export_media_cache_get_object_from_statement (RygelMediaExportMediaC
 
     object = RYGEL_MEDIA_OBJECT (container);
     if (uri) {
-      gee_abstract_collection_add (GEE_ABSTRACT_COLLECTION (object->uris), uri);
+      gee_abstract_collection_add (GEE_ABSTRACT_COLLECTION (rygel_media_object_get_uris (object)), uri);
     }
     container->total_deleted_child_count = (guint32) sqlite3_column_int64 (statement, (gint) RYGEL_MEDIA_EXPORT_DETAIL_COLUMN_DELETED_CHILD_COUNT);
     container->update_id = (guint) sqlite3_column_int64 (statement, (gint) RYGEL_MEDIA_EXPORT_DETAIL_COLUMN_CONTAINER_UPDATE_ID);

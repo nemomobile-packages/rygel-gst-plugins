@@ -86,7 +86,7 @@ rygel_media_export_writable_db_container_real_add_item (RygelWritableContainer *
                                                           rygel_media_export_writable_db_container_real_add_item);
 
   rygel_media_object_set_parent (object, RYGEL_MEDIA_CONTAINER (base));
-  uri = gee_abstract_list_get (GEE_ABSTRACT_LIST (object->uris), 0);
+  uri = gee_abstract_list_get (GEE_ABSTRACT_LIST (rygel_media_object_get_uris (object)), 0);
   file = g_file_new_for_uri (uri);
   g_free (uri);
   if (g_file_is_native (file)) {

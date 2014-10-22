@@ -140,7 +140,7 @@ rygel_media_export_dummy_container_constructed (GObject *object)
   guint32 total_deleted_child_count = 0;
 
   G_OBJECT_CLASS (rygel_media_export_dummy_container_parent_class)->constructed (object);
-  uris = GEE_ABSTRACT_COLLECTION (media_object->uris);
+  uris = GEE_ABSTRACT_COLLECTION (rygel_media_object_get_uris (media_object));
   gee_abstract_collection_add (uris, uri);
   g_free (uri);
 
