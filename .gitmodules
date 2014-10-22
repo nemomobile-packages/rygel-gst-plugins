@@ -1,0 +1,3 @@
+[submodule "upstream"]
+	path = upstream
+	url = git://git.gnome.org/rygel-gst-0-10-plugins
