@@ -1,0 +1,8 @@
+This is a media-engine for Rygel,
+using gstreamer-0.10,
+for applications that have not yet ported to gstreamer-1.0.
+
+They also serve as examples of external plugins.
+
+The regular gstreamer media-engine for Rygel
+uses gstreamer-1.0.

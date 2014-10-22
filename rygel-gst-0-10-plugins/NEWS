@@ -1,0 +1,13 @@
+0.20.0:
+ - Port to Rygel plugin changes
+
+0.18.0:
+ - Port to C.
+ - Port to GUPnP-DLNA 2.0 API.
+ - Backport change tracking from Rygel.
+
+1.17.4:
+
+An initial release, to provide a media-export plugin
+for Rygel based on gstreamer-0.10, for platforms
+that have not yet moved to gstreamer-1.0.
